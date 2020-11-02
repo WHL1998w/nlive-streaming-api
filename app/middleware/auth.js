@@ -40,7 +40,6 @@ module.exports = (option, app) => {
 
         // 5.挂在到全局ctx
         ctx.authUser = user
-
         await next()
     }
 }

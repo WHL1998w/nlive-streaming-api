@@ -7,7 +7,7 @@ const Controller = require('egg').Controller
 class UserController extends Controller {
     // 注册
     async reg() {
-        let { ctx, app } = this
+        const { ctx, app } = this
         ctx.validate({
             username: {
                 type: 'string',
@@ -122,6 +122,19 @@ class UserController extends Controller {
 
         ctx.apiSuccess(user)
     }
+	// 退出登录
+	async logout() {
+		const {
+			ctx,
+			service
+		} = this;
+		let current_user_id = ctx.authUser.id;
+		
+		if (!(await service.cache.remove('user_' + current_user_id))) {
+			ctx.throw(400, '退出登录失败');
+		}
+		ctx.apiSuccess('ok');
+	}	
 }
 
 module.exports = UserController

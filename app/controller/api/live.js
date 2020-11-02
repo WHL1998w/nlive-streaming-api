@@ -44,8 +44,53 @@ class LiveController extends Controller {
             sign,
         })
     }
-
-
+	
+	// 修改直播间状态
+	  async changeStatus() {
+		  let {ctx, app } = this
+		  let user_id = ctx.authUser.id
+		  // 参数验证
+		  ctx.validate({
+			  id: {
+				  type:'int',
+				  required: true,
+				  desc: '直播间ID',
+				  
+			  },
+			  type: {
+				  type: 'string',
+				  required: true,
+				  range: {
+					  in: ['play', 'pause','stop'],
+					  
+				  }
+			  }
+		  })
+		  let { id, type } = ctx.request.body
+		  let live = await app.model.Live.findOne({
+			  where:{
+				  id,
+				  user_id,
+			  }
+		  })
+		  if (!live) {
+			  return ctx.apiFail('该直播间不存在')
+		  }
+		  if(live.status === 3) {
+			  return ctx.apiFail('该直播间已结束')
+		  }
+		  const status = {
+			  play: 1,
+			  pause:2,
+			  stop:3,
+			  
+		  }
+		  live.status = status[type]
+		  await live.save()
+		  ctx.apiSuccess('ok')
+		  
+	  }
+	
     // 生成签名
     sign(key) {
         let { ctx, app } = this

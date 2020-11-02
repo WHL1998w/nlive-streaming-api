@@ -22,7 +22,7 @@ module.exports = (appInfo) => {
   config.middleware = ['errorHandler', 'auth']
 
   config.auth = {
-    match: ['/api/live/create']
+    match: ['/api/live/create','/api/logout','/api/user/info']
   }
 
 

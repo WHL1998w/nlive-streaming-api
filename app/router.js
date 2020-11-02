@@ -15,4 +15,6 @@ module.exports = app => {
   router.post('/api/live/create', controller.api.live.save);
   //退出登录
   router.post('/api/logout', controller.api.live.save);
+   // 获取当前用户信息
+  router.get('/api/user/info',controller.api.user.info)
 };

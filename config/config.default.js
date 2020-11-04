@@ -22,7 +22,7 @@ module.exports = (appInfo) => {
   config.middleware = ['errorHandler', 'auth']
 
   config.auth = {
-    match: ['/api/live/create','/api/logout','/api/user/info','/api/live/changestatus','/api/live/list/:page','/api/live/read/:id']
+    match: ['/api/live/create','/api/logout','/api/user/info','/api/live/changestatus']
   }
 
 
@@ -99,6 +99,24 @@ module.exports = (appInfo) => {
       password: '',
       db: 2,
     },
+  }
+  
+  //io配置
+  config.io = {
+	  init: {
+		  wsEngine: 'ws',
+	  },
+	  namespace: {
+		  '/': {
+			  connectionMiddleware:[],
+			  packetMiddleware:[],
+		  }
+	  },
+	  redis:{
+		  host: '127.0.0.1',
+		  port:6379,
+		  db:0,
+	  }
   }
 
   // 流媒体配置

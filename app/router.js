@@ -9,7 +9,8 @@ module.exports = app => {
   //socket路由配置测试
   // io.of('/').route('test',io.controller.nsp.test)
   io.of('/').route('joinLive',io.controller.nsp.joinLive)
-
+  io.of('/').route('leaveLive',io.controller.nsp.leaveLive)
+  
   // 用户注册
   router.post('/api/reg', controller.api.user.reg);
   // 用户登录

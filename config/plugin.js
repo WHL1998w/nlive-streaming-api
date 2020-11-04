@@ -24,8 +24,10 @@ module.exports = {
     enable: true,
     package: 'egg-redis',
   },
-  io: {
-	enable:true,
-	package: 'egg-socket.io'
-  }
+  // 安装socket.io插件
+   io:{
+  	 enable:true,
+  	 package:'egg-socket.io',
+  	 
+   }
 };

@@ -101,22 +101,23 @@ module.exports = (appInfo) => {
     },
   }
   
-  //io配置
-  config.io = {
-	  init: {
-		  wsEngine: 'ws',
-	  },
-	  namespace: {
-		  '/': {
-			  connectionMiddleware:[],
-			  packetMiddleware:[],
-		  }
-	  },
-	  redis:{
-		  host: '127.0.0.1',
-		  port:6379,
-		  db:0,
-	  }
+  // socket.io安装和通讯
+  config.io ={
+  	init: {
+  		wsEnging: 'ws',
+  		
+  	},
+  	namespace:{
+  		'/': {
+  			connectionMiddleware: [],
+  			packetMiddleware:[],
+  		},
+  	},
+  	redis: {
+  		host: '127.0.0.1',
+  		port: 6379,
+  		db: 0,
+  	}
   }
 
   // 流媒体配置

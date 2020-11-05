@@ -11,6 +11,8 @@ module.exports = app => {
   io.of('/').route('joinLive',io.controller.live.joinLive)
   io.of('/').route('leaveLive',io.controller.live.leaveLive)
   io.of('/').route('comment', io.controller.live.comment)
+  io.of('/').route('gift', io.controller.live.gift)
+  
   
   // 用户注册
   router.post('/api/reg', controller.api.user.reg);
@@ -28,4 +30,6 @@ module.exports = app => {
   router.get('/api/live/list/:page',controller.api.live.list)
   // 查看指定直播间
   router.get('/api/live/read/:id',controller.api.live.read)
+  
+  router.get('/api/gift/list', controller.api.gift.list)
 };

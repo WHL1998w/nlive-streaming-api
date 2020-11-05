@@ -33,11 +33,9 @@ class UserController extends Controller {
 
         let { username, password, repassword } = ctx.request.body
 
-
         if (password !== repassword) {
             ctx.throw(422, '密码和确认密码不一致')
         }
-
 
         // 验证用户是否已经存在
         if (
@@ -50,18 +48,13 @@ class UserController extends Controller {
             ctx.throw(400, '该用户名已存在')
         }
 
-
         let user = await app.model.User.create({
             username,
             password,
         })
-
-
         if (!user) {
             ctx.throw(400, '创建用户失败')
         }
-
-
         ctx.apiSuccess(user)
     }
 
@@ -92,8 +85,6 @@ class UserController extends Controller {
                 username,
             },
         })
-
-
         if (!user) {
             ctx.throw(400, '该用户不存在')
         }

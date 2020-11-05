@@ -13,7 +13,7 @@ const await = require('await-stream-ready/lib/await')
 		 return await app.model.Live.findOne({
 			 where:{
 				 id,
-			 }
+			 },
 		 })
 	 }
 	 
@@ -32,4 +32,5 @@ const await = require('await-stream-ready/lib/await')
 		 return false
 	 }
  }
- model.exports = LiveService
+ 
+ module.exports = LiveService

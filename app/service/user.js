@@ -10,7 +10,7 @@ class UserService extends Service {
 		return await app.model.User.findOne({
 			where:{
 				id,
-			}
+			},
 		})
 	}
 }

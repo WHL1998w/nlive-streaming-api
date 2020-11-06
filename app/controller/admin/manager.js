@@ -17,7 +17,7 @@ class ManagerController extends Controller {
 	    })
 	  }
 	
-	//删除管理员
+	//删除管理员功能实现
 	  async delete() {
 	    const { ctx, app } = this
 	    const id = ctx.params.id

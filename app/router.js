@@ -29,7 +29,9 @@ module.exports = app => {
   // 直播间列表
   router.get('/api/live/list/:page',controller.api.live.list)
   // 查看指定直播间
-  router.get('/api/live/read/:id',controller.api.live.read)
-  
+  router.get('/api/live/read/:id',controller.api.live.read) 
   router.get('/api/gift/list', controller.api.gift.list)
+  //新增管理员
+  router.get('/admin/manager/create',controller.admin.manager.create)
+  router.post('/admin/manager',controller.admin.manager.save)
 };

@@ -29,5 +29,10 @@ module.exports = {
   	 enable:true,
   	 package:'egg-socket.io',
   	 
+   },
+   // 配置插件plugins.js
+   nunjucks: {
+       enable: true,
+       package: 'egg-view-nunjucks',
    }
 };

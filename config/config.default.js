@@ -119,6 +119,12 @@ module.exports = (appInfo) => {
   		db: 0,
   	}
   }
+  
+  config.view = {
+      mapping: {
+        '.html': 'nunjucks',
+      },
+    };
 
   // 流媒体配置
   config.mediaServer = {

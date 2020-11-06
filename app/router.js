@@ -13,7 +13,7 @@ module.exports = app => {
   io.of('/').route('comment', io.controller.live.comment)
   io.of('/').route('gift', io.controller.live.gift)
   
-  
+  router.get('/test',controller.admin.test.page);
   // 用户注册
   router.post('/api/reg', controller.api.user.reg);
   // 用户登录

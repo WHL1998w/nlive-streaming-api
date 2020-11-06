@@ -8,6 +8,28 @@ class ManagerController extends Controller {
         const { ctx } = this;
         await ctx.render('manager/create.html');
     }
+	// 管理员列表
+	  async index() {
+	    const { ctx, app } = this
+	    let data = await ctx.page('Manager')
+	    await ctx.render('manager/index.html', {
+	      data,
+	    })
+	  }
+	
+	//删除管理员
+	  async delete() {
+	    const { ctx, app } = this
+	    const id = ctx.params.id
+	    await app.model.Manager.destroy({
+	      where: {
+	        id,
+	      },
+	    })
+	    ctx.toast('删除成功', 'success')
+	    ctx.redirect('/admin/manager')
+	  }
+	
     // 创建管理员逻辑
     async save(){
         const { ctx,app } = this;

@@ -19,11 +19,28 @@ module.exports = (appInfo) => {
 
 
   // add your middleware config here
-  config.middleware = ['errorHandler', 'auth']
-
+  config.middleware = ['errorHandler', 'auth','adminAuth', 'adminSidebar']
+  
+ config.webUrl = 'http://127.0.0.1:7001'
+  // 配置哪些路由需要验证
   config.auth = {
-    match: ['/api/live/create','/api/logout','/api/user/info','/api/live/changestatus']
+    match: [
+      '/api/logout',
+      '/api/live/create',
+      '/api/live/changestatus',
+      '/api/gift/wxpay',
+      '/api/user/info',
+    ],
   }
+  
+    config.adminAuth = {
+      ignore: ['/api', '/admin/login', '/admin/loginevent'],
+    }
+    config.adminSidebar = {
+      ignore: ['/api', '/admin/login', '/admin/loginevent', '/public'],
+    }
+
+  
 
 
   // add your user config here
@@ -41,7 +58,7 @@ module.exports = (appInfo) => {
       },
     },
     // 跨域白名单
-    domainWhiteList: ['http://localhost:3000'],
+    //domainWhiteList: ['http://localhost:3000'],
   }
   // 允许跨域的方法
   config.cors = {
@@ -73,19 +90,17 @@ module.exports = (appInfo) => {
       underscored: true,
     },
   }
-
-
+  
+  //参数校验
   config.valparams = {
     locale: 'zh-cn',
     throwError: true,
   }
-
-
+  //加密密钥
   config.crypto = {
     secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
   }
-
-
+  //jwt配置密钥
   config.jwt = {
     secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
   }
@@ -101,7 +116,7 @@ module.exports = (appInfo) => {
     },
   }
   
-  // socket.io安装和通讯
+  // websocket配置
   config.io ={
   	init: {
   		wsEnging: 'ws',
@@ -119,7 +134,7 @@ module.exports = (appInfo) => {
   		db: 0,
   	}
   }
-  
+  //模板引擎配置
   config.view = {
       mapping: {
         '.html': 'nunjucks',
@@ -145,6 +160,33 @@ module.exports = (appInfo) => {
       secret: 'nodemedia2017privatekey',
     },
   };
+  
+  //session配置
+    config.session = {
+      renew: true,
+      key: 'EGG_SESS',
+      maxAge: 24 * 3600 * 1000 * 30, // 1 天
+      httpOnly: true,
+      encrypt: true,
+    }
+  
+    //文件上传配置
+    config.multipart = {
+      fileSize: '50mb',
+      mode: 'stream',
+      fileExtensions: [
+        '.xls',
+        '.txt',
+        '.jpg',
+        '.JPG',
+        '.png',
+        '.PNG',
+        '.gif',
+        '.GIF',
+        '.jpeg',
+        '.JPEG',
+      ], //上传的文件格式
+    }
   var nums = new NodeMediaServer(config.mediaServer)
   nums.run();
 

@@ -67,5 +67,17 @@ module.exports = app => {
 	router.get('/admin/user/delete/:id', controller.admin.user.delete)
 	//更新接口
 	router.post('/admin/user/:id', controller.admin.user.update)
+	//礼物模块列表路由
+	router.get('/admin/gift', controller.admin.gift.index)
+	//创建礼物页面路由
+	router.get('/admin/gift/create', controller.admin.gift.create)
+	//新增礼物接口
+	router.post('/admin/gift', controller.admin.gift.save)
+	//编辑礼物路由
+	router.get('/admin/gift/edit/:id', controller.admin.gift.edit)
+	//删除礼物路由
+	router.get('/admin/gift/delete/:id', controller.admin.gift.delete)
+	//更新接口
+	router.post('/admin/gift/:id', controller.admin.gift.update)
 		
 };

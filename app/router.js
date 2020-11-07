@@ -53,7 +53,19 @@ module.exports = app => {
 	router.get('/admin/manager/delete/:id', controller.admin.manager.delete)
 	//更新管理员接口
 	router.post('/admin/manager/:id', controller.admin.manager.update)
-	
-	
-	
+	//上传文件接口
+	router.post('/admin/upload', controller.admin.common.upload)
+	//用户模块列表路由
+	router.get('/admin/user', controller.admin.user.index)
+	//创建用户页面路由
+	router.get('/admin/user/create', controller.admin.user.create)
+	//新增用户接口
+	router.post('/admin/user', controller.admin.user.save)
+	//编辑用户路由
+	router.get('/admin/user/edit/:id', controller.admin.user.edit)
+	//删除用户路由
+	router.get('/admin/user/delete/:id', controller.admin.user.delete)
+	//更新接口
+	router.post('/admin/user/:id', controller.admin.user.update)
+		
 };

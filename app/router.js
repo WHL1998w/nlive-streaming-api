@@ -14,6 +14,8 @@ module.exports = app => {
   io.of('/').route('gift', io.controller.live.gift)
   
   router.get('/test',controller.admin.test.page);
+  //上传图片
+  router.post('/api/upload',controller.api.common.upload)
   // 用户注册
   router.post('/api/reg', controller.api.user.reg);
   // 用户登录
@@ -87,6 +89,8 @@ module.exports = app => {
 	router.get('/admin/live/gift/:id',controller.admin.live.gift)
 	//查看直播间弹幕路由
 	router.get('/admin/live/comment/:id',controller.admin.live.comment)
+	//删除直播间
+	router.get('/admin/live/delete/:id',controller.admin.live.delete)
 	//查看已结束的直播间
 	router.get('/admin/live/close/:id',controller.admin.live.closelive)
 		

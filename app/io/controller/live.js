@@ -3,6 +3,7 @@
 'use strict';
 
 const await = require('await-stream-ready/lib/await');
+const live = require('../../model/live')
 
 const Controller = require('egg').Controller;
 
@@ -49,7 +50,6 @@ class NspController extends Controller {
       socket.emit(id, ctx.helper.parseMsg('error', '用户不存在'));
       return false;
     }
-
     return user;
   }
   //直播间送礼物
@@ -150,7 +150,8 @@ class NspController extends Controller {
     let user = await this.checkToken(token)
     if (!user) {
       return
-    } // 验证当前直播间是否存在或是否处于直播中
+    } 
+	// 验证当前直播间是否存在或是否处于直播中
     let msg = await service.live.checkStatus(live_id)
     if (msg) {
       socket.emit(id, ctx.helper.parseMsg('error', msg))
@@ -247,7 +248,7 @@ class NspController extends Controller {
       return;
     }
 
-    // 验证当前直播间是否存在或是出于直播中
+    // 验证当前直播间是否存在或是否处于直播中
     let msg = await service.live.checkStatus(live_id);
 
     if (msg) {
@@ -309,12 +310,6 @@ class NspController extends Controller {
         });
       }
     }
-    // let list = await service.get('userList_' + room)
-    // if (list) {
-    //   list = list.filter((item) => item.id !== user.id)
-    //   service.cache.set('userList_' + room, list)
-    // }
-    // console.log(list)
   }
 }
 
